@@ -322,7 +322,8 @@
     }
 
   , obj: function (o) {
-      return o instanceof Object && !is.fun(o) && !is.arr(o)
+      // Updated based on jQuery type checking
+      return !( !o || typeof o !== "object" || o.nodeType || o === o.window || is.fun(o) || is.arr(o) )
     }
   }
 
