@@ -1,3 +1,11 @@
+Valentine
+=========
+
+This is a fork of [Dustin Diaz’ Valentine](https://github.com/ded/valentine) with extended type checking for objects and an optional deep flag for the extend method. All changes are quickly implemented to fit the needs of a specific project. I am not sure wether these changes are beneficial for everyday use cases.
+
+Valentine
+---------
+
     \  / _. |  _  ._ _|_ o ._   _
      \/ (_| | (/_ | | |_ | | | (/_
 
