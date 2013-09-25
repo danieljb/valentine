@@ -439,8 +439,18 @@
 
   , extend: function extend() {
       // based on jQuery deep merge
+      // Added optional deep merge argument
       var options, name, src, copy, clone
         , target = arguments[0], i = 1, length = arguments.length
+        , deep = false
+
+      // Handle a deep copy situation
+      if ( typeof target === "boolean" ) {
+        deep = target;
+        target = arguments[1] || {};
+        // skip the boolean and the target
+        i = 2;
+      }
 
       for (; i < length; i++) {
         if ((options = arguments[i]) !== n) {
@@ -451,9 +461,9 @@
             if (target === copy) {
               continue;
             }
-            if (copy && (is.obj(copy))) {
+            if (deep && copy && (is.obj(copy))) {
               clone = src && is.obj(src) ? src : {}
-              target[name] = o.extend(clone, copy);
+              target[name] = o.extend(deep, clone, copy);
             } else if (copy !== undefined) {
               target[name] = copy
             }

@@ -165,7 +165,7 @@ sink('Utility', function (test, ok, b, a, assert) {
     ok(out.baz == 'thunk', 'contains baz property');
   });
 
-  test('extend deep', 2, function () {
+  test('extend flat', 2, function () {
 
 
     var o = {
@@ -189,6 +189,34 @@ sink('Utility', function (test, ok, b, a, assert) {
       }
     }
     var out = v.extend(o, o2)
+    ok(!v.is.def(out.foo.baz), 'does not contain baz property')
+    ok(v.is.def(out.foo.bar), 'contains bar property')
+  })
+
+  test('extend deep', 2, function () {
+
+
+    var o = {
+      foo: {
+        baz: 'thunk'
+      }
+    , dog: {
+          bag: 'of stuff'
+        , junk: 'murr'
+      }
+    }
+    var o2 = {
+      foo: {
+        bar: 'baz'
+      }
+    , cat: {
+        bag: 'of more stuff'
+      }
+    , dog: {
+        junk: 'not murr'
+      }
+    }
+    var out = v.extend(true, o, o2)
     ok(v.is.def(out.foo.baz), 'contains baz property')
     ok(v.is.def(out.foo.bar), 'contains bar property')
   })
